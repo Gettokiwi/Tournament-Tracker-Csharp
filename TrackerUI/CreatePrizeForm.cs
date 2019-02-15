@@ -10,12 +10,26 @@ using System.Windows.Forms;
 
 namespace TrackerUI
 {
-    public partial class TournamentViewerForm : Form
+    public partial class CreatePrizeForm : Form
     {
-        public TournamentViewerForm()
+        public CreatePrizeForm()
         {
             InitializeComponent();
         }
 
+        private void createPrizeButton_Click(object sender, EventArgs e)
+        {
+          
+        }
+
+        private bool ValidateForm()
+        {
+            bool output = true;
+
+
+
+
+            return output;
+        }
     }
 }

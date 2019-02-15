@@ -10,12 +10,11 @@ using System.Windows.Forms;
 
 namespace TrackerUI
 {
-    public partial class TournamentViewerForm : Form
+    public partial class CreateTournamentForm : Form
     {
-        public TournamentViewerForm()
+        public CreateTournamentForm()
         {
             InitializeComponent();
         }
-
     }
 }
