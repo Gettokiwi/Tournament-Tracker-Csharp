@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TrackerLibrary;
 
 namespace TrackerUI
 {
@@ -19,17 +20,67 @@ namespace TrackerUI
 
         private void createPrizeButton_Click(object sender, EventArgs e)
         {
-          
+          if(ValidateForm())
+            {
+                PrizeModel model = new PrizeModel(
+                    placeNameValue.Text,
+                    placeNumberValue.Text,
+                    prizeAmountValue.Text,
+                    prizePercentageValue.Text);
+
+                foreach(IDataConnection db in GlobalConfig.Connections)
+                {
+                    db.CreatePrize(model);
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Invalid input");
+            }
+
+            placeNameValue.Text = " ";
+            placeNumberValue.Text = " ";
+            prizeAmountValue.Text = " ";
+            prizePercentageValue.Text = " ";
+
         }
 
         private bool ValidateForm()
         {
-            bool output = true;
+            
+
+            int placenumber = 0;
+            bool placeNumberValidNumber = int.TryParse(placeNumberValue.Text, out placenumber);
+
+            decimal prizeAmount = 0;
+            int prizePercentage = 0;
+
+            bool prizeAmountValid = decimal.TryParse(prizeAmountValue.Text, out prizeAmount);
+            bool prizePercentageValid = int.TryParse(prizePercentageValue.Text, out prizePercentage);
 
 
+            if (!placeNumberValidNumber || placenumber < 1 || placeNumberValue.Text.Length== 0)
+            {
+                return false;
+            }
 
+            if(prizeAmountValid == false || prizePercentageValid == false)
+            {
+                return false;
+            }
 
-            return output;
+            if (prizeAmount <=0 && prizePercentage <= 0)
+            {
+                return false;
+            }
+
+            if(prizePercentage < 0 || prizePercentage > 100)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }
