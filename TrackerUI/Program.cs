@@ -3,23 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TrackerLibrary;
 
 namespace TrackerUI
 {
     static class Program
     {
         /// <summary>
-        /// The main entry point for the application.
+        /// Der Haupteinstiegspunkt für die Anwendung.
         /// </summary>
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            TrackerLibrary.GlobalConfig.InitializeConnections(true, true);
-            Application.Run(new CreatePrizeForm());
+            
+            // Initialize the connections
+            GlobalConfig.InitializeConnections(DatabaseType.Sql);
 
-            //Application.Run(new TournamentDashboardForm());
+            //Application.Run(new CreateTournamentForm());
+            Application.Run(new TournamentDashbordForm());
         }
     }
 }

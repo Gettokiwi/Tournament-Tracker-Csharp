@@ -1,30 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using TrackerLibrary.DataAccess;
+using System.Configuration;
 
 namespace TrackerLibrary
 {
     public static class GlobalConfig
     {
-        public static List<IDataConnection> Connections { get; private set; } = new List<IDataConnection>();
+        public const string PrizesFile = "Prizes.csv";
+        public const string PeopleFile = "People.csv";
+        public const string TeamFile = "Teams.csv";
+        public const string TournamentFile = "Tournaments.csv";
+        public const string MatchupFile = "Matchup.csv";
+        public const string MatchupEntryFile = "MatchupEntry.csv";
 
+        public static IDataConnection Connection { get; private set; }
 
-        public static void InitializeConnections(bool database, bool textFiles)
+        public static void InitializeConnections(DatabaseType db)
         {
-            if (database)
+            if (db == DatabaseType.Sql)
             {
-                SqlConnector sql = new SqlConnector();
-                Connections.Add(sql);
-
+                SQLConnector sql = new SQLConnector();
+                Connection= sql;
             }
-
-            if (textFiles)
+            else if (db == DatabaseType.TextFile)
             {
-                TextConnector txt = new TextConnector();
-                Connections.Add(txt);
+                TextConnector text = new TextConnector();
+                Connection= text;
             }
+        }
+
+        public static string CnnString(string conName)
+        {
+            return ConfigurationManager.ConnectionStrings[conName].ConnectionString;
+        }
+
+        public static string AppKeyLookup(string key)
+        {
+            return ConfigurationManager.AppSettings[key];
         }
     }
 }

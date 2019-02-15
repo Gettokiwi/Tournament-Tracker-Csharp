@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C2849FFF-7901-4A5C-9D48-0DCBAB609D07}</ProjectGuid>
+    <ProjectGuid>{8C9056E4-B0B9-469E-A25D-ABCFCFE5DB4F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>TrackerUI</RootNamespace>
     <AssemblyName>TrackerUI</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -63,11 +64,15 @@
     <Compile Include="CreateTournamentForm.Designer.cs">
       <DependentUpon>CreateTournamentForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TournamentDashboardForm.cs">
+    <Compile Include="IPrizeRequestor.cs" />
+    <Compile Include="ITeamRequestor.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TournamentDashbordForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TournamentDashboardForm.Designer.cs">
-      <DependentUpon>TournamentDashboardForm.cs</DependentUpon>
+    <Compile Include="TournamentDashbordForm.Designer.cs">
+      <DependentUpon>TournamentDashbordForm.cs</DependentUpon>
     </Compile>
     <Compile Include="TournamentViewerForm.cs">
       <SubType>Form</SubType>
@@ -75,8 +80,6 @@
     <Compile Include="TournamentViewerForm.Designer.cs">
       <DependentUpon>TournamentViewerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CreatePrizeForm.resx">
       <DependentUpon>CreatePrizeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -86,12 +89,6 @@
     <EmbeddedResource Include="CreateTournamentForm.resx">
       <DependentUpon>CreateTournamentForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TournamentDashboardForm.resx">
-      <DependentUpon>TournamentDashboardForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TournamentViewerForm.resx">
-      <DependentUpon>TournamentViewerForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -100,7 +97,14 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="TournamentDashbordForm.resx">
+      <DependentUpon>TournamentDashbordForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TournamentViewerForm.resx">
+      <DependentUpon>TournamentViewerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -116,7 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TrackerLibrary\TrackerLibrary.csproj">
-      <Project>{5d796fe7-ad7b-48fa-877c-2ea8411b1c4a}</Project>
+      <Project>{ccbef864-840c-40db-98f2-2ece62f6ddd9}</Project>
       <Name>TrackerLibrary</Name>
     </ProjectReference>
   </ItemGroup>
